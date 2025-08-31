@@ -331,6 +331,7 @@ void chat_handle_help_command(ChatUser *user)
         "/nick <nickname>       - Change your nickname\n"
         "/stats                 - Show server statistics\n"
         "/time                  - Show current time\n"
+        "/clear                 - Clear the screen\n"
         "/help                  - Show this help\n"
         "/quit                  - Disconnect\n"
         "\nTo chat, just type your message (must be in a room)\n"
@@ -343,6 +344,18 @@ void chat_handle_help_command(ChatUser *user)
 int chat_process_command(ChatServer *server, ChatUser *user, const char *input)
 {
     char *input_copy = strdup(input);
+    
+    // Strip trailing newline from input
+    size_t len = strlen(input_copy);
+    if (len > 0 && (input_copy[len - 1] == '\n' || input_copy[len - 1] == '\r')) {
+        input_copy[len - 1] = '\0';
+        len--;
+    }
+    // Handle \r\n case
+    if (len > 0 && input_copy[len - 1] == '\r') {
+        input_copy[len - 1] = '\0';
+    }
+    
     char *command = strtok(input_copy, " ");
     char *args = strtok(NULL, "");
 
@@ -387,6 +400,13 @@ int chat_process_command(ChatServer *server, ChatUser *user, const char *input)
             char time_msg[128];
             snprintf(time_msg, sizeof(time_msg), "Server time: %s", ctime(&now));
             chat_send_system_message(user, time_msg);
+        }
+        else if (strcmp(command, "/clear") == 0)
+        {
+            // Send ANSI escape sequence to clear screen
+            const char *clear_screen = "\033[2J\033[H";
+            connection_prepare_response(user->connection, clear_screen, strlen(clear_screen));
+            connection_write(user->connection);
         }
         else if (strcmp(command, "/quit") == 0)
         {

@@ -24,12 +24,13 @@ That's it! 🎉
 - **File browsing** - Directory listings when enabled
 - **Multi-format support** - HTML, CSS, JS, images, text files
 
-### 💬 Real-Time Chat Server  
+### 💬 Real-Time Chat Server (Fully Working!)
 - **Persistent chat sessions** - Stay connected, no reconnection needed
 - **Multiple chat rooms** - Create and join different rooms
 - **User management** - Nicknames, user lists, join/leave notifications
-- **Rich commands** - `/help`, `/join`, `/nick`, `/list`, `/quit` and more
-- **Live messaging** - Real-time chat with other users
+- **Rich commands** - All commands working: `/help`, `/join`, `/nick`, `/list`, `/quit` and more
+- **Live messaging** - Real-time chat with other users via telnet
+- **Command processing** - Fixed newline handling for all terminal clients
 
 ### ⚡ Advanced Features
 - **Dual-protocol** - HTTP (port 8080) + Chat (port 8081) simultaneously  
@@ -46,44 +47,57 @@ That's it! 🎉
 # Then visit: http://localhost:8080
 ```
 
-### Option 2: Chat Server  
+### Option 2: Chat Server (Working!)  
 ```bash
 ./run.sh
-# In another terminal:
-./demo.sh
-# Or manually: telnet localhost 8081
+# In another terminal, connect via telnet:
+telnet localhost 8081
+# Then try these commands:
+/help
+/join lobby
+/nick YourName
+Hello everyone!
+/quit
 ```
 
-### Option 3: Multi-User Chat
+### Option 3: Multi-User Chat Demo
 ```bash
-# Terminal 1:
+# Terminal 1 - Start the server:
 ./run.sh
 
-# Terminal 2:
+# Terminal 2 - First user:
 telnet localhost 8081
 /join lobby
 /nick Alice
 Hello everyone!
 
-# Terminal 3:  
+# Terminal 3 - Second user:  
 telnet localhost 8081
 /join lobby
 /nick Bob
 Hi Alice!
+# Now they can chat in real-time!
 ```
 
-## 💻 Chat Commands
+**Note:** All chat commands are now working properly via telnet! The `/help` command will show you all available options.
+
+## 💻 Chat Commands (All Working!)
+
+Connect via `telnet localhost 8081` and use these commands:
 
 | Command | Description | Example |
 |---------|-------------|---------|
-| `/help` | Show all commands | `/help` |
-| `/join <room>` | Join or create a room | `/join lobby` |
-| `/nick <name>` | Change your nickname | `/nick Alice` |
-| `/list users` | See who's in your room | `/list users` |
-| `/list rooms` | See available rooms | `/list rooms` |
-| `/leave` | Leave current room | `/leave` |
-| `/quit` | Exit chat | `/quit` |
-| `<message>` | Send chat message | `Hello world!` |
+| `/help` | ✅ Show all commands | `/help` |
+| `/join <room>` | ✅ Join or create a room | `/join lobby` |
+| `/nick <name>` | ✅ Change your nickname | `/nick Alice` |
+| `/list users` | ✅ See who's in your room | `/list users` |
+| `/list rooms` | ✅ See available rooms | `/list rooms` |
+| `/leave` | ✅ Leave current room | `/leave` |
+| `/clear` | ✅ Clear the screen | `/clear` |
+| `/quit` | ✅ Exit chat | `/quit` |
+| `<message>` | ✅ Send chat message | `Hello world!` |
+
+**All commands are working properly!** Connect with multiple telnet sessions to test real-time chat.
 
 ## 🛠️ Installation
 
@@ -199,10 +213,13 @@ This server demonstrates core networking concepts and is ready for extension:
 
 ## 📊 Current Status
 
-✅ **Fully Functional** - Both HTTP and Chat working  
+✅ **Fully Functional** - Both HTTP and Chat working perfectly  
+✅ **All Commands Working** - `/help`, `/join`, `/quit`, etc. all functional via telnet  
 ✅ **Production Ready** - Handles multiple users simultaneously  
+✅ **Fixed Command Processing** - Proper newline handling for all terminal clients  
+✅ **Real-Time Chat** - Multiple users can chat simultaneously  
 ✅ **Well Documented** - Clear code and extensive comments  
 ✅ **Easy to Use** - Simple scripts for immediate testing  
 ✅ **Extensible** - Clean architecture for future features  
 
-**Ready to showcase networking skills!** 🎉
+**Ready to showcase networking skills with working chat demo!** 🎉
