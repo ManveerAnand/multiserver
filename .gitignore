@@ -1,0 +1,35 @@
+# Build artifacts
+build/
+*.o
+multiserver
+
+# Logs and runtime data
+logs/
+*.log
+
+# Development documentation (keep for LaTeX report)
+PHASE3_COMPLETION_REPORT.md
+PHASE3_PLAN.md
+docs/development/
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# IDE files
+.vscode/
+.idea/
+*.kate-swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Core dumps
+core
+core.*
+
+# Configuration overrides (keep templates)
+config/local.conf
+config/production.conf
